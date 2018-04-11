@@ -40,15 +40,13 @@ public class MainActivity extends AppCompatActivity implements DateTimeInterface
     }
 
     public void showTimePickerDialog(View v) {
-
-
-
+        TimePickerFragment timePickerFragment = new TimePickerFragment();
+        timePickerFragment.show(getFragmentManager(), "timePicker");
     }
 
     public void showDatePickerDialog(View v) {
-
-
-
+        DatePickerFragment datePickerFragment = new DatePickerFragment();
+        datePickerFragment.show(getFragmentManager(), "datePicker");
     }
 
     @Override

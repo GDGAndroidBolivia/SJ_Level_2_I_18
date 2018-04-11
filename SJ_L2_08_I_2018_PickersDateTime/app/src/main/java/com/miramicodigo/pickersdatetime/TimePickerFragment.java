@@ -14,6 +14,12 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        final Calendar calendar = Calendar.getInstance();
+        int hora = calendar.get(Calendar.HOUR_OF_DAY);
+        int minuto = calendar.get(Calendar.MINUTE);
+
+        timePickerDialog = new TimePickerDialog(getActivity(), this, hora,
+                minuto, DateFormat.is24HourFormat(getActivity()));
 
         return timePickerDialog;
     }

@@ -51,6 +51,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginBottom="50dp"
         android:gravity="center">
+
         <EditText
             android:id="@+id/etHora"
             android:layout_width="0dp"
@@ -70,4 +71,5 @@
             android:layout_weight="1"
             android:layout_marginRight="20dp"/>
     </LinearLayout>
+
 </RelativeLayout>

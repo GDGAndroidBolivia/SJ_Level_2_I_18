@@ -16,14 +16,24 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        final Calendar calendar = Calendar.getInstance();
+        int anio = calendar.get(Calendar.YEAR);
+        int mes = calendar.get(Calendar.MONTH);
+        int dia = calendar.get(Calendar.DAY_OF_MONTH);
 
+        datePicker = new DatePickerDialog(getActivity(), this, anio, mes, dia);
 
+        datePicker.getDatePicker().setMinDate(minRangeDatePicker().getTimeInMillis());
+        datePicker.getDatePicker().setMaxDate(maxRangeDatePicker().getTimeInMillis());
 
         return datePicker;
     }
 
     @Override
     public void onDateSet(DatePicker datePicker, int anio, int mes, int dia) {
+
+        System.out.println(anio+""+mes+""+dia);
+
         final int mesActual = mes + 1;
         String diaFormateado = (dia < 10) ? "0"+String.valueOf(dia): String.valueOf(dia);
         String mesFormateado = (mesActual < 10) ? "0"+String.valueOf(mesActual) : String.valueOf(mesActual);
@@ -33,7 +43,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
     }
 
     public Calendar maxRangeDatePicker() {
-        String aTime = "2018-02-25";
+        String aTime = "2018-04-15";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         Calendar cal = null;
         try {
@@ -46,7 +56,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
     }
 
     public Calendar minRangeDatePicker() {
-        String aTime = "2018-02-15";
+        String aTime = "2018-04-11";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         Calendar cal = null;
         try {
