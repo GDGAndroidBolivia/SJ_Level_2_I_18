@@ -24,10 +24,20 @@ public class FullscreenDialog extends DialogFragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.dialog_fullscreen, container, false);
 
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        toolbar.setTitle("Dialogo");
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
-
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if(actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_close_menu);
+        }
 
         etNombre = (EditText) view.findViewById(R.id.etNombre);
+
+        setHasOptionsMenu(true);
 
         return view;
     }

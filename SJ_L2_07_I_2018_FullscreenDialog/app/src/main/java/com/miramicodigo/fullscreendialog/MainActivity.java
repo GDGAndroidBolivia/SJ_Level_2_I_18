@@ -19,9 +19,9 @@ public class MainActivity extends AppCompatActivity implements DialogFullscreenI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
+        toolbar.setTitle("FullScreen Dialog");
+        setSupportActionBar(toolbar);
 
         btnFullscreenDialog = (Button) findViewById(R.id.btnAbrirFullscreenDialog);
         tvResultado = (TextView) findViewById(R.id.tvResultadoFullscreenDialog);
@@ -35,7 +35,11 @@ public class MainActivity extends AppCompatActivity implements DialogFullscreenI
     }
 
     public void mostrarDialog() {
-
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        FullscreenDialog fragment = new FullscreenDialog();
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        transaction.add(android.R.id.content, fragment).addToBackStack(null).commit();
     }
 
     @Override
