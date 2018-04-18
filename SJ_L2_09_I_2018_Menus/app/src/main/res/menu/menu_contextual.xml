@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuConUno"
+        android:title="Compartir con..."/>
+    <item
+        android:id="@+id/menuConDos"
+        android:title="Descargar imagen"/>
+    <item
+        android:id="@+id/menuConTres"
+        android:title="Obtener enlace"/>
+    <item
+        android:id="@+id/menuConCuatro"
+        android:title="Agregar usuario"/>
+
+</menu>

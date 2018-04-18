@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menuOpUno"
+        android:title="Menu Uno"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_menu_uno"/>
+
+    <item
+        android:id="@+id/menuOpDos"
+        android:title="Menu Dos"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_menu_dos"/>
+
+    <item
+        android:id="@+id/menuOpDos2"
+        android:title="Menu Dos"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_menu_dos"/>
+
+    <item
+        android:id="@+id/menuOpTres"
+        android:title="Menu Tres"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_menu_tres">
+
+        <menu>
+            <item
+                android:id="@+id/menuOpCuatro"
+                android:title="Sub-Menu Cuatro"
+                android:icon="@drawable/ic_menu_cuatro"/>
+            <item
+                android:id="@+id/menuOpCinco"
+                android:title="Sub-Menu Cinco"
+                android:icon="@drawable/ic_menu_cinco"/>
+        </menu>
+
+    </item>
+
+
+
+
+
+</menu>
