@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">Notificaciones</string>
-    <string name="long_lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam feugiat aliquam tincidunt. Donec in justo id ante porta aliquet in vel magna. Nulla scelerisque est ante, sed faucibus tellus blandit et. </string>
-
+    <string name="long_lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam feugiat aliquam tincidunt. Donec in justo id ante porta aliquet in vel magna. Nulla scelerisque est ante, sed faucibus tellus blandit et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam feugiat aliquam tincidunt. Donec in justo id ante porta aliquet in vel magna. Nulla scelerisque est ante, sed faucibus tellus blandit et. </string>
 </resources>
