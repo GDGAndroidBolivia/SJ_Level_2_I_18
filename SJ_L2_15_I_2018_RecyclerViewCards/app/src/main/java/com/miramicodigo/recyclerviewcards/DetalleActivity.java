@@ -23,16 +23,9 @@ public class DetalleActivity extends AppCompatActivity {
         tvSubtitulo = (TextView) findViewById(R.id.tvDetalleHabilidades);
         ivImagen = (ImageView) findViewById(R.id.ivDetalleImagen);
 
-        tf_black = Typeface.createFromAsset(getAssets(), "fonts/roboto_black.ttf");
-        tf_thin = Typeface.createFromAsset(getAssets(), "fonts/roboto_thin.ttf");
 
-        tvTitulo.setTypeface(tf_black);
-        tvSubtitulo.setTypeface(tf_thin);
 
-        Pokemon pokemon = (Pokemon) getIntent().getSerializableExtra("poke");
-        tvTitulo.setText(pokemon.getNombre());
-        tvSubtitulo.setText(pokemon.getTipo());
-        ivImagen.setImageResource(pokemon.getImagen());
+
     }
 }
 

@@ -29,17 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
         llenarPokemones();
 
-        rvDatos = (RecyclerView) findViewById(R.id.rvContenido);
 
-        //layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        //layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        //layoutManager = new GridLayoutManager(this,2);
-        layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
 
-        rvDatos.setLayoutManager(layoutManager);
 
-        adapter = new RVAdapter(activity, datos);
-        rvDatos.setAdapter(adapter);
     }
 
     public void llenarPokemones() {
@@ -49,12 +41,9 @@ public class MainActivity extends AppCompatActivity {
         String[] arrayTipos = resources.getStringArray(R.array.tipos);
         TypedArray arrayImgs = resources.obtainTypedArray(R.array.image);
         for(int i=0; i < arrayNombres.length; i++) {
-            Pokemon poke = new Pokemon(
-                    arrayNombres[i],
-                    arrayTipos[i],
-                    arrayImgs.getResourceId(i, -1)
-            );
-            datos.add(poke);
+
+
+
         }
     }
 
