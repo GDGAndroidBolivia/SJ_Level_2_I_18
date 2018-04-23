@@ -35,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         rootLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
 
-        //fab = (FloatingActionButton) findViewById(R.id.fabAction);
-
         show_fab_1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab1_show);
         show_fab_2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab2_show);
         show_fab_3 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab3_show);
