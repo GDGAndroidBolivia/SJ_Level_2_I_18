@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BottomNavigationView</string>
+
+    <string name="title_menu_uno">Menu 1</string>
+    <string name="title_menu_dos">Menu 2</string>
+    <string name="title_menu_tres">Menu 3</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

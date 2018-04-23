@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_1"
+        android:title="Menu Uno"
+        android:icon="@drawable/ic_home_black_24dp"/>
+    <item
+        android:id="@+id/menu_2"
+        android:title="Menu Dos"
+        android:icon="@drawable/ic_dashboard_black_24dp"/>
+    <item
+        android:id="@+id/menu_3"
+        android:title="Menu Tres"
+        android:icon="@drawable/ic_android_black_24dp"/>
+</menu>

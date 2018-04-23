@@ -29,7 +29,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         initUI();
 
+        mNotificationManager = (NotificationManager)
+                getApplicationContext().getSystemService(NOTIFICATION_SERVICE);
 
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("channel", "channel",
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            mNotificationManager.createNotificationChannel(channel);
+        }
     }
 
     private void initUI () {
@@ -63,15 +70,82 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void createSimpleNotification(Context context) {
+        NotificationCompat.Builder notification =
+                new NotificationCompat.Builder(context, "");
 
+        Intent intent = new Intent(context, ResultadoActivity.class);
+        PendingIntent pendingIntent =
+                PendingIntent.getActivity(
+                        context, 0, intent, 0);
+
+        long[] v = {0, 400, 100, 300, 200, 300};
+        Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        notification.setContentTitle("Notificacion simple");
+        notification.setContentText("Esta es una notificacion de ejemplo");
+        notification.setSubText("Mensajito subtext");
+        notification.setSmallIcon(R.drawable.ic_android_black_24dp);
+        notification.setLargeIcon(
+                BitmapFactory.decodeResource(context.getResources(),
+                        R.drawable.ic_android_black_24dp));
+        notification.setContentIntent(pendingIntent);
+        //notification.setAutoCancel(true);
+        notification.setOngoing(true);
+        notification.setVibrate(v);
+        notification.setSound(uri);
+
+        mNotificationManager.notify(1, notification.build());
     }
 
     public void createExpandableNotification (Context context) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            NotificationCompat.Builder notification =
+                    new NotificationCompat.Builder(context, "");
+            notification.setSmallIcon(R.drawable.ic_android_black_24dp);
+            notification.setLargeIcon(
+                    BitmapFactory.decodeResource(context.getResources(),
+                            R.drawable.ic_android_black_24dp));
+            notification.setContentTitle("Notificacion expandible");
+            notification.setContentText("Contenido notificacion");
 
+            NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+            String lorem = context.getResources().getString(R.string.long_lorem);
+            String []content = lorem.split("\\.");
+            for(String line : content) {
+                inboxStyle.addLine(line);
+            }
+            inboxStyle.setBigContentTitle("Titulo Inbox Style");
+
+            notification.setSubText("Contenido subtext");
+            notification.setStyle(inboxStyle);
+
+            mNotificationManager.notify(2, notification.build());
+
+        } else {
+            createSimpleNotification(this);
+        }
     }
 
     public void createBigImageNotification(Context context) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            NotificationCompat.Builder notification =
+                    new NotificationCompat.Builder(context, "");
+            notification.setContentTitle("Titulo Big Image Notification");
+            notification.setContentText("Contenido notificacion");
 
+            NotificationCompat.BigPictureStyle bigPictureStyle =
+                    new NotificationCompat.BigPictureStyle();
+            bigPictureStyle.bigPicture(BitmapFactory.decodeResource(
+                    getResources(), R.drawable.banner));
+
+            notification.setStyle(bigPictureStyle);
+            notification.setSmallIcon(R.drawable.ic_android_black_24dp);
+
+            mNotificationManager.notify(3, notification.build());
+
+        } else {
+            createSimpleNotification(this);
+        }
     }
 
     public void createProgressNotification (final Context context) {
