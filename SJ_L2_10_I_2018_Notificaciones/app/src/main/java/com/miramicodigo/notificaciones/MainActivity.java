@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import java.util.Random;
 
+import javax.xml.transform.Result;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static NotificationManager mNotificationManager;
@@ -151,11 +153,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void createProgressNotification (final Context context) {
         final int progresID = new Random().nextInt(1000);
 
+        final NotificationCompat.Builder notification =
+                new NotificationCompat.Builder(context, "");
+        notification.setSmallIcon(R.drawable.ic_android_black_24dp);
+        notification.setContentTitle("Titulo de la notificacion");
+        notification.setContentText("Contenido de la notificacion");
+        notification.setTicker("Notificacion de progreso creada");
+        notification.setUsesChronometer(true);
+        notification.setProgress(100, 0, true);
+
         AsyncTask<Integer, Integer, Integer> downloadTask = new AsyncTask<Integer, Integer, Integer>() {
             @Override
             protected void onPreExecute () {
                 super.onPreExecute();
-
+                mNotificationManager.notify(progresID, notification.build());
             }
 
             @Override
@@ -164,7 +175,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Thread.sleep(5000);
                     for (int i = 0; i < 101; i+=5) {
 
+                        notification.setContentTitle("En progreso...");
+                        notification.setContentText("Se esta ejecutando un proceso...");
+                        notification.setProgress(100, i, false);
+                        notification.setSmallIcon(R.drawable.ic_android_black_24dp);
+                        notification.setContentInfo(i + "%");
 
+                        mNotificationManager.notify(progresID, notification.build());
 
                         Thread.sleep(500);
                     }
@@ -178,15 +195,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             protected void onPostExecute (Integer integer) {
                 super.onPostExecute(integer);
+                notification.setContentTitle("Progreso terminado");
+                notification.setContentText("El progreso de carga termino.");
+                notification.setSmallIcon(R.drawable.ic_android_black_24dp);
+                notification.setTicker("El progreso termino");
+                notification.setUsesChronometer(false);
+                notification.setProgress(0, 0, false);
 
-
+                mNotificationManager.notify(progresID, notification.build());
             }
         };
         downloadTask.execute();
     }
 
     public void createButtonNotification (Context context) {
+        if (Build.VERSION.SDK_INT >+ Build.VERSION_CODES.JELLY_BEAN) {
+            Intent intent = new Intent(context, ResultadoActivity.class);
+            PendingIntent pendingIntent =
+                    PendingIntent.getActivity(context, 0, intent, 0);
 
+            NotificationCompat.Builder notification =
+                    new NotificationCompat.Builder(context, "");
+            notification.setSmallIcon(R.drawable.ic_android_black_24dp);
+            notification.setContentTitle("Notificacion con botones");
+            notification.setContentText("Contenido de la notificacion");
+            notification.addAction(android.R.drawable.ic_menu_call, "Llamar", pendingIntent);
+            notification.addAction(android.R.drawable.ic_menu_camera, "Camara", pendingIntent);
+
+            mNotificationManager.notify(1, notification.build());
+
+
+        } else {
+
+        }
     }
+
+
 
 }
