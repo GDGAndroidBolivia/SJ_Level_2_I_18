@@ -9,7 +9,14 @@
 
     <include layout="@layout/content_main" />
 
-
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_menu_settings"
+        android:tint="#FFF"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"/>
 
     <include layout="@layout/fab_layout" />
 

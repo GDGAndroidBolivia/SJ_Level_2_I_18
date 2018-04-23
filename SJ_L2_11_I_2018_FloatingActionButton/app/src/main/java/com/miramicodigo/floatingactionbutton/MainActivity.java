@@ -47,6 +47,28 @@ public class MainActivity extends AppCompatActivity {
         fab3 = (FloatingActionButton) findViewById(R.id.fab_3);
 
 
+        fab = (FloatingActionButton) findViewById(R.id.fabMain);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(FAB_Status == false) {
+                    expandFAB();
+                    FAB_Status = true;
+                } else {
+                    hideFAB();
+                    FAB_Status = false;
+                }
+            }
+        });
+
+        rootLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hideFAB();
+            }
+        });
+
 
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
