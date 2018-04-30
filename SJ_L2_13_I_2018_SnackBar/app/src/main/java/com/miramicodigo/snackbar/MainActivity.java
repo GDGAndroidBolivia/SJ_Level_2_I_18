@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Snackbar snackbar = Snackbar.make(coordinatorLayout,
-                        "Snackbak Simple", Snackbar.LENGTH_SHORT);
+                        "Mensaje", Snackbar.LENGTH_SHORT);
                 snackbar.show();
             }
         });
@@ -41,14 +41,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Snackbar snackbar = Snackbar.make(coordinatorLayout,
-                        "No hay conexion a internet", Snackbar.LENGTH_SHORT);
-                snackbar.setAction("Reintentar", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                    }
-                });
-
+                        "Mensaje eliminado", Snackbar.LENGTH_LONG)
+                        .setAction("Deshacer", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Toast.makeText(getApplicationContext(),
+                                        "OK", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                 snackbar.show();
             }
         });
@@ -57,18 +57,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Snackbar snackbar = Snackbar.make(coordinatorLayout,
-                        "Snackbar personalizado", Snackbar.LENGTH_LONG);
-                snackbar.setAction("Accion", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                        "Mensaje eliminado", Snackbar.LENGTH_LONG)
+                        .setAction("Deshacer", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Toast.makeText(getApplicationContext(),
+                                        "OK", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                snackbar.setActionTextColor(Color.GREEN);
 
-                    }
-                });
-                snackbar.setActionTextColor(Color.BLUE);
-                View sb = snackbar.getView();
-                TextView tv = sb.findViewById(android.support.design.R.id.snackbar_text);
-                tv.setTextColor(Color.RED);
-                sb.setBackgroundColor(Color.GREEN);
+                View sbView = snackbar.getView();
+                TextView textView = sbView.findViewById(android.support.design.R.id.snackbar_text);
+                textView.setTextColor(Color.BLUE);
+                sbView.setBackgroundColor(Color.YELLOW);
 
                 snackbar.show();
             }
