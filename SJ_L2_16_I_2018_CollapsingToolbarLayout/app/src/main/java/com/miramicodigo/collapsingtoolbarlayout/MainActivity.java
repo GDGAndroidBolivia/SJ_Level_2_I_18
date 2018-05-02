@@ -19,7 +19,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
+        collapsingToolbarLayout = (CollapsingToolbarLayout)
+                findViewById(R.id.collapsingTL);
+        collapsingToolbarLayout.setTitle("¡Oh Linda La Paz!");
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Click en FAB", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }
