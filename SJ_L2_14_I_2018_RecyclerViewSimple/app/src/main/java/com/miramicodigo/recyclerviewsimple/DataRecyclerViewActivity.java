@@ -23,7 +23,16 @@ public class DataRecyclerViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_recycler_view);
 
+        recyclerView = findViewById(R.id.rvDatos);
 
+        listaDatos = llenarDatos();
+
+        recyclerView.setLayoutManager(
+                new LinearLayoutManager(getApplicationContext()));
+
+        adaptador = new RecyclerViewAdapter(listaDatos);
+
+        recyclerView.setAdapter(adaptador);
 
     }
 
@@ -37,43 +46,42 @@ public class DataRecyclerViewActivity extends AppCompatActivity {
 
     private class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
+            private TextView tvTexto;
 
+            public RecyclerViewHolder(View itemView) {
+                super(itemView);
+                tvTexto = (TextView) itemView;
 
-        public RecyclerViewHolder(View itemView) {
-            super(itemView);
-
-
-
-        }
+            }
     }
 
     private class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
-
-
+        private List<String> data;
 
         public RecyclerViewAdapter(List<String> a) {
-
-
-
+            data = a;
         }
 
         @Override
         public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            LayoutInflater layoutInflater =
+                    LayoutInflater.from(getApplicationContext());
+            View view = layoutInflater.inflate(
+                    android.R.layout.simple_list_item_1,
+                    parent, false);
 
-
-            return null;
+            return new RecyclerViewHolder(view);
         }
 
         @Override
         public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-
-
-
+            String dato = data.get(position);
+            holder.tvTexto.setText(dato);
         }
 
         @Override
         public int getItemCount() {
-            return 0;
+            return data.size();
         }
     }
 }
