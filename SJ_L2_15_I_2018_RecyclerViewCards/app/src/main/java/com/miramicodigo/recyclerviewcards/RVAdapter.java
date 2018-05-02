@@ -26,17 +26,19 @@ class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context)
+                .inflate(R.layout.card_item_grid,
+                        parent, false);
 
-
-        return null;
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
-
-
-
+        Pokemon temp = items.get(position);
+        holder.tvTitulo.setText(temp.getNombre());
+        holder.tvSubtitulo.setText(temp.getTipo());
+        holder.ivImagen.setImageResource(temp.getImagen());
     }
 
     @Override
@@ -45,14 +47,26 @@ class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder> {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-
-
+        private TextView tvTitulo;
+        private TextView tvSubtitulo;
+        private ImageView ivImagen;
 
         public ViewHolder(final View itemView) {
             super(itemView);
+            tvTitulo = itemView.findViewById(R.id.tvTitulo);
+            tvSubtitulo = itemView.findViewById(R.id.tvSubtitulo);
+            ivImagen = itemView.findViewById(R.id.ivImagen);
 
-
-
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int posicion = getAdapterPosition();
+                    Intent intent = new Intent(
+                            context, DetalleActivity.class);
+                    intent.putExtra("poke", items.get(posicion));
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

@@ -23,8 +23,11 @@ public class DetalleActivity extends AppCompatActivity {
         tvSubtitulo = (TextView) findViewById(R.id.tvDetalleHabilidades);
         ivImagen = (ImageView) findViewById(R.id.ivDetalleImagen);
 
-
-
+        Pokemon poke = (Pokemon) getIntent()
+                .getSerializableExtra("poke");
+        tvTitulo.setText(poke.getNombre());
+        tvSubtitulo.setText(poke.getTipo());
+        ivImagen.setImageResource(poke.getImagen());
 
     }
 }
