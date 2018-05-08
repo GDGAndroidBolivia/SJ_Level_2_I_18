@@ -16,6 +16,7 @@ import java.text.Normalizer;
 
 public class DetalleActivity extends AppCompatActivity {
 
+
     private ImageView ivImagen;
     private TextView tvNombre;
     private TextView tvTelefono;
@@ -38,7 +39,29 @@ public class DetalleActivity extends AppCompatActivity {
         tvCorreo = (TextView) findViewById(R.id.tvCorreo);
         tvGenero = (TextView) findViewById(R.id.tvGenero);
 
+        db = new DatabaseAdapter(this);
+        db.abrir();
 
+        id = getIntent().getLongExtra("id", 0);
+
+        Cursor cursor = db.obtenerPersona(id);
+
+        if(cursor.moveToFirst()) {
+            String nombre = cursor.getString(1);
+            String telefono = cursor.getString(2);
+            String correo = cursor.getString(3);
+            String genero = cursor.getString(4);
+            tvNombre.setText(nombre);
+            tvTelefono.setText(telefono);
+            tvCorreo.setText(correo);
+            if(genero.equalsIgnoreCase("m")) {
+                tvGenero.setText("Masculino");
+                ivImagen.setImageResource(R.drawable.man);
+            } else {
+                tvGenero.setText("Femenino");
+                ivImagen.setImageResource(R.drawable.woman);
+            }
+        }
 
     }
 
@@ -52,10 +75,14 @@ public class DetalleActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_editar:
-
+                Intent intent = new Intent(this, FormularioActivity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
+                finish();
                 break;
             case R.id.menu_eliminar:
-
+                db.eliminarPersona(id);
+                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -64,6 +91,11 @@ public class DetalleActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        db.cerrar();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 }

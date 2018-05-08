@@ -35,7 +35,11 @@ public class FormularioActivity extends AppCompatActivity {
         rbMasculino = (RadioButton) findViewById(R.id.rbMasculino);
         rbFemenino = (RadioButton) findViewById(R.id.rbFemenino);
 
+        db = new DatabaseAdapter(this);
+        db.abrir();
 
+        // onCreate, onStart, onResume
+        // onStop, onDestroy
 
         if (getIntent().getExtras() != null) {
             edicion = true;
@@ -43,7 +47,19 @@ public class FormularioActivity extends AppCompatActivity {
             id = getIntent().getLongExtra("id", 0);
             Cursor cursor = db.obtenerPersona(id);
             if(cursor.moveToFirst()) {
+                String nombre = cursor.getString(1);
+                String telefono = cursor.getString(2);
+                String correo = cursor.getString(3);
+                String genero = cursor.getString(4);
 
+                etNombre.setText(nombre);
+                etTelefono.setText(telefono);
+                etCorreo.setText(correo);
+                if(genero.equalsIgnoreCase("m")) {
+                    rbMasculino.setChecked(true);
+                } else {
+                    rbFemenino.setChecked(true);
+                }
             }
         } else {
             edicion = false;
@@ -63,9 +79,9 @@ public class FormularioActivity extends AppCompatActivity {
             String correo = etCorreo.getText().toString();
             String genero = rbMasculino.isChecked() ? "m" : "f";
             if (edicion) {
-
+                db.actualizarPersona(id, nombre, telefono, correo, genero);
             } else {
-
+                db.adicionarPersona(nombre, telefono, correo, genero);
             }
             finish();
         }
@@ -78,7 +94,11 @@ public class FormularioActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-
+        db.cerrar();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 }
