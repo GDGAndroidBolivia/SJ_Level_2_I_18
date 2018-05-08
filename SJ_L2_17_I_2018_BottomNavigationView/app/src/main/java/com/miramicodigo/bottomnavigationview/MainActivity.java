@@ -21,7 +21,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        bottomNavigationView = findViewById(R.id.bnvMain);
 
+        fragmentManager = getSupportFragmentManager();
+        transaction = fragmentManager.beginTransaction();
+        fragment = new MenuUnoFragment();
+        transaction.replace(R.id.frameContent, fragment).commit();
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.itemUno:
+                        fragment = new MenuUnoFragment();
+                        break;
+                    case R.id.itemDos:
+                        fragment = new MenuDosFragment();
+                        break;
+                    case R.id.itemTres:
+                        fragment = new MenuTresFragment();
+                        break;
+                }
+                transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.frameContent, fragment).commit();
+                return true;
+            }
+        });
 
     }
 
