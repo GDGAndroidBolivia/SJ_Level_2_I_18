@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+        <Button
+            android:id="@+id/btnReadWebsite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="Cargar pagina web"
+            android:layout_weight="2">
+        </Button>
+        <Button
+            android:id="@+id/btnToast"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="toast"
+            android:text="Toast"
+            android:layout_weight="1">
+        </Button>
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <TextView
+            android:id="@+id/tvResultado"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text=""
+            android:scrollbars="vertical">
+        </TextView>
+    </ScrollView>
+
+</LinearLayout>
