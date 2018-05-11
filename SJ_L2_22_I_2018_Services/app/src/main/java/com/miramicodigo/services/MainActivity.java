@@ -14,11 +14,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startService(View view) {
-
+        startService(new Intent(this, MyService.class));
     }
 
     public void stopService(View view) {
-
+        stopService(new Intent(this, MyService.class));
     }
 
 }
