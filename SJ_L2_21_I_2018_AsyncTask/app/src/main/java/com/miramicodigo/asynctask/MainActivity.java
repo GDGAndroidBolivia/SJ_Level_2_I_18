@@ -30,7 +30,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-
+        DownloadWebPageTask task = new DownloadWebPageTask();
+        task.execute(new String[]
+                {"http://www.instagram.com",
+                "http://www.google.com",
+                "http://www.bolivia.com"});
     }
 
     public void toast(View v) {
@@ -45,23 +49,41 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
-
+            dialog.setMessage("Descargando codigo fuente");
+            dialog.setCancelable(true);
+            dialog.show();
         }
 
         @Override
         protected String doInBackground(String... strings) {
             String response = "";
+            for(String url : strings) {
+                DefaultHttpClient client = new DefaultHttpClient();
+                HttpGet httpGet = new HttpGet(url);
+                try{
+                    HttpResponse execute = client.execute(httpGet);
+                    InputStream content = execute.getEntity().getContent();
+                    BufferedReader buffer = new BufferedReader(
+                            new InputStreamReader(content)
+                    );
+                    String res = "";
+                    while ((res = buffer.readLine()) != null){
+                        response += res;
+                    }
+                }catch(Exception e) {
 
-
-
+                }
+            }
             return response;
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-
+            if(dialog.isShowing()) {
+                dialog.dismiss();
+            }
+            textView.setText(s);
 
         }
     }
