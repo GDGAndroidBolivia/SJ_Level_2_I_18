@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity implements LoginView, View.O
         btnRegister.setOnClickListener(this);
         loginPresenter = new LoginPresenter(this);
 
-
-
+        Realm.init(this);
+        realm = Realm.getDefaultInstance();
     }
 
     @Override
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements LoginView, View.O
 
     @Override
     public void goToRegister() {
-        startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+        startActivity(new Intent(this, RegisterActivity.class));
     }
 
     @Override

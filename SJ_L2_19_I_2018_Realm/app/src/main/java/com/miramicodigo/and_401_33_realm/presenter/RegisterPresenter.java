@@ -23,9 +23,13 @@ public class RegisterPresenter {
 
     public void registerUser(Realm realm, String user, String password){
         try {
-
+            realm.beginTransaction();
+            realm.copyToRealm(new User(user, password));
+            realm.commitTransaction();
+            registerView.success();
         } catch (RealmPrimaryKeyConstraintException e) {
-
+            realm.cancelTransaction();
+            registerView.failure();
         }
     }
 }
