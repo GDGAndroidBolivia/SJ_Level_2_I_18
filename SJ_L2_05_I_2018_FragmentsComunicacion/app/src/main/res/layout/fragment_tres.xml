@@ -1,0 +1,35 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#c1e0f9"
+    tools:context="com.miramicodigo.fragmentscomunicacion.TresFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnTresAUno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enviar de Tres a Uno"/>
+
+        <Button
+            android:id="@+id/btnTresADos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enviar de Tres a Dos"/>
+
+        <TextView
+            android:id="@+id/tvTresRecibido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mensaje Recibido"
+            android:gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+</FrameLayout>

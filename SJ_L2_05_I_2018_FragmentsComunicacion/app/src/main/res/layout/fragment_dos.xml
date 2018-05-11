@@ -1,0 +1,35 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#b1e4ac"
+    tools:context="com.miramicodigo.fragmentscomunicacion.DosFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnDosAUno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enviar de Dos a Uno"/>
+
+        <Button
+            android:id="@+id/btnDosATres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enviar de Dos a Tres"/>
+
+        <TextView
+            android:id="@+id/tvDosRecibido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mensaje Recibido"
+            android:gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+</FrameLayout>
