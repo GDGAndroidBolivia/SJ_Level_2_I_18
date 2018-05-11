@@ -12,6 +12,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static TextView tvCronometro;
     private Cronometro cronometro = null;
 
+
+    /**
+     *
+     * UI Thread o Main Thread (Interfaz grafica, TextView, ImageView, Buttons, etc)
+     * -----------------------------------------------------------------
+     *
+     * Thread cronometro (proceso de cambios en el cronometro)
+     * -----------------------------------------------------------------
+     *
+     * Thread carga de Google Maps
+     * -----------------------------------------------------------------
+     *
+     * */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +45,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnIniciar:
-
+                if(cronometro == null) {
+                    cronometro = new Cronometro("Cronometro", tvCronometro);
+                    new Thread(cronometro).start();
+                }
                 break;
             case R.id.btnReiniciar:
-
+                if(cronometro != null) {
+                    cronometro.reiniciar();
+                }
                 break;
             case R.id.btnPausar:
-
+                if(cronometro != null) {
+                    cronometro.pause();
+                }
                 break;
         }
     }
